@@ -157,6 +157,7 @@ void wifiSetup() {
   Serial.print("[WIFI] INFO: Connecting to ");
   Serial.println(WIFI_SSID);
   WiFi.mode(WIFI_STA);
+  WiFi.hostname(MQTT_CLIENT_ID);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD); //connect to wifi
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
