@@ -172,6 +172,7 @@ void wifiSetup() {
 void setup() {
   // init the serial
   Serial.begin(115200);
+  ArduinoOTA.setHostname("led-bedroom");
   ArduinoOTA.onStart([]() {
     String type;
     type = "sketch";
