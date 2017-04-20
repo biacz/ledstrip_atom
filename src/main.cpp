@@ -5,13 +5,13 @@
 #include <secrets.h>
 
 #define MQTT_VERSION MQTT_VERSION_3_1_1
-const char* MQTT_CLIENT_ID = "bedroom_ledstrip";
-const char* MQTT_LIGHT_STATE_TOPIC = "/house/bedroom/rgb_table/light/status";
-const char* MQTT_LIGHT_COMMAND_TOPIC = "/house/bedroom/rgb_table/light/switch";
-const char* MQTT_LIGHT_BRIGHTNESS_STATE_TOPIC = "/house/bedroom/rgb_table/brightness/status";
-const char* MQTT_LIGHT_BRIGHTNESS_COMMAND_TOPIC = "/house/bedroom/rgb_table/brightness/set";
-const char* MQTT_LIGHT_RGB_STATE_TOPIC = "/house/bedroom/rgb_table/rgb/status";
-const char* MQTT_LIGHT_RGB_COMMAND_TOPIC = "/house/bedroom/rgb_table/rgb/set";
+const char* MQTT_CLIENT_ID = "ktn-left-led";
+const char* MQTT_LIGHT_STATE_TOPIC = "/house/kitchen/rgb_left/light/status";
+const char* MQTT_LIGHT_COMMAND_TOPIC = "/house/kitchen/rgb_left/light/switch";
+const char* MQTT_LIGHT_BRIGHTNESS_STATE_TOPIC = "/house/kitchen/rgb_left/brightness/status";
+const char* MQTT_LIGHT_BRIGHTNESS_COMMAND_TOPIC = "/house/kitchen/rgb_left/brightness/set";
+const char* MQTT_LIGHT_RGB_STATE_TOPIC = "/house/kitchen/rgb_left/rgb/status";
+const char* MQTT_LIGHT_RGB_COMMAND_TOPIC = "/house/kitchen/rgb_left/rgb/set";
 const char* LIGHT_ON = "ON";
 const char* LIGHT_OFF = "OFF";
 
@@ -23,9 +23,9 @@ uint8_t m_rgb_green = 255;
 uint8_t m_rgb_blue = 255;
 
 // pins used for the rgb led (PWM)
-const PROGMEM uint8_t RGB_LIGHT_RED_PIN = 12;
-const PROGMEM uint8_t RGB_LIGHT_GREEN_PIN = 14;
-const PROGMEM uint8_t RGB_LIGHT_BLUE_PIN = 13;
+const PROGMEM uint8_t RGB_LIGHT_BLUE_PIN = 12;
+const PROGMEM uint8_t RGB_LIGHT_RED_PIN = 14;
+const PROGMEM uint8_t RGB_LIGHT_GREEN_PIN = 13;
 
 // buffer used to send/receive data with MQTT
 const uint8_t MSG_BUFFER_SIZE = 20;
@@ -172,7 +172,7 @@ void wifiSetup() {
 void setup() {
   // init the serial
   Serial.begin(115200);
-  ArduinoOTA.setHostname("led-bedroom");
+  ArduinoOTA.setHostname(MQTT_CLIENT_ID);
   ArduinoOTA.onStart([]() {
     String type;
     type = "sketch";
