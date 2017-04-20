@@ -170,7 +170,6 @@ void wifiSetup() {
 }
 
 void setup() {
-  // init the serial
   Serial.begin(115200);
   ArduinoOTA.setHostname(MQTT_CLIENT_ID);
   ArduinoOTA.onStart([]() {
@@ -209,6 +208,7 @@ void setup() {
 
 void loop() {
   yield();
+  ArduinoOTA.handle();
   if (!mqttClient.connected()) {
     mqttReconnect();
   }
